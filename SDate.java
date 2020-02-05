@@ -67,7 +67,7 @@ public class SDate{
      */
     public Integer getYear() {
         if(this.year != null){return this.year;}
-        else{return 0;}
+        else{return 2020;}
     }
 
     /**
@@ -88,7 +88,7 @@ public class SDate{
      */
     public Integer getMonth() {
         if(this.month != null){return this.month;}
-        else{return 0;}
+        else{return 1;}
     }
 
     /**
@@ -109,7 +109,7 @@ public class SDate{
      */
     public Integer getDay() {
         if(this.day != null){return this.day;}
-        else{return 0;}
+        else{return 1;}
     }
 
     /**
@@ -194,7 +194,7 @@ public class SDate{
     @Override
     public String toString(){
         String s;
-        s = this.year+"/"+feelZero(this.month)+"/"+feelZero(this.day);
+        s = this.getYear()+"/"+feelZero(this.getMonth())+"/"+feelZero(this.getDay());
         if(this.hour != null && this.min != null && this.sec != null){
             s = s+" - "+feelZero(this.hour)+":"+feelZero(this.min)+":"+feelZero(this.sec);
         }
@@ -213,6 +213,65 @@ public class SDate{
             return Integer.toString(i);
         }
     }
+
+    /**
+     * Are 2 SDates equals
+     * @param date the sDate to compare with
+     * @return a Boolean
+     * @author Sébastien HERT
+     */
+    public Boolean equals(SDate date){
+
+        return  this.getYear().equals(date.getYear())
+                && this.getMonth().equals(date.getMonth())
+                && this.getDay().equals(date.getDay())
+                && this.getHour().equals(date.getHour())
+                && this.getMin().equals(date.getMin())
+                && this.getSec().equals(date.getSec());
+
+    }
+
+    /**
+     * Is a SDate superior to another one
+     * @param date the SDate to compare with
+     * @return a Boolean
+     * @author Sébastien HERT
+     */
+    public Boolean isSup(SDate date){
+        if (this.getYear() > date.getYear()){return true;}
+        else if(this.getYear() < date.getYear()){return false;}
+        else{
+            if (this.getMonth() > date.getMonth()){return true;}
+            else if(this.getMonth() < date.getMonth()){return false;}
+            else{
+                if (this.getDay() > date.getDay()){return true;}
+                else if(this.getDay() < date.getDay()){return false;}
+                else{
+                    if (this.getHour() > date.getHour()){return true;}
+                    else if(this.getHour() < date.getHour()){return false;}
+                    else{
+                        if (this.getMin() > date.getMin()){return true;}
+                        else if(this.getMin() < date.getMin()){return false;}
+                        else{
+                            if (this.getSec() > date.getSec()){return true;}
+                            else{return false;}
+                        }
+                    }
+                }                            
+            }   
+        }
+    }
+
+    /**
+     * Is a SDate inferior to another one
+     * @param date the SDate to compare with
+     * @return a Boolean
+     * @author Sébastien HERT
+     */
+    public Boolean isInf(SDate date){
+        return !this.equals(date) && !this.isSup(date);
+    }
+
     
     
 }
