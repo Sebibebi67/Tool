@@ -17,12 +17,12 @@ public class SDate{
      * @author Sébastien HERT
      */
     public SDate(){
-        this.year = null;
-        this.month = null;
-        this.day = null;
-        this.hour = null;
-        this.min = null;
-        this.sec = null;
+        this.year = 2020;
+        this.month = 1;
+        this.day = 1;
+        this.hour = 0;
+        this.min = 0;
+        this.sec = 0;
     }
 
     /**
@@ -36,9 +36,9 @@ public class SDate{
         this.year = year;
         this.month = month;
         this.day = day;
-        this.hour = null;
-        this.min = null;
-        this.sec = null;
+        this.hour = 0;
+        this.min = 0;
+        this.sec = 0;
     }
 
     /**
@@ -66,8 +66,7 @@ public class SDate{
      * @author Sébastien HERT
      */
     public Integer getYear() {
-        if(this.year != null){return this.year;}
-        else{return 2020;}
+        return this.year;
     }
 
     /**
@@ -77,8 +76,6 @@ public class SDate{
      */
     public void setYear(Integer year) {
         this.year = year;
-        if(this.month==null){this.month = 1;}
-        if(this.day==null){this.day = 1;}
     }
 
     /**
@@ -87,8 +84,7 @@ public class SDate{
      * @author Sébastien HERT
      */
     public Integer getMonth() {
-        if(this.month != null){return this.month;}
-        else{return 1;}
+        return this.month;
     }
 
     /**
@@ -98,8 +94,6 @@ public class SDate{
      */
     public void setMonth(Integer month) {
         this.month = month;
-        if(this.year==null){this.year = 2020;}
-        if(this.day==null){this.day = 1;}
     }
 
     /**
@@ -108,8 +102,7 @@ public class SDate{
      * @author Sébastien HERT
      */
     public Integer getDay() {
-        if(this.day != null){return this.day;}
-        else{return 1;}
+        return this.day;
     }
 
     /**
@@ -119,8 +112,6 @@ public class SDate{
      */
     public void setDay(Integer day) {
         this.day = day;
-        if(this.year==null){this.year = 2020;}
-        if(this.month==null){this.month = 1;}
     }
 
     /**
@@ -129,8 +120,7 @@ public class SDate{
      * @author Sébastien HERT
      */
     public Integer getHour() {
-        if(this.hour != null){return this.hour;}
-        else{return 0;}
+        return this.hour;
     }
 
     /**
@@ -140,8 +130,6 @@ public class SDate{
      */
     public void setHour(Integer hour) {
         this.hour = hour;
-        if(this.min==null){this.min = 0;}
-        if(this.sec==null){this.sec = 0;}
     }
 
     /**
@@ -150,8 +138,7 @@ public class SDate{
      * @author Sébastien HERT
      */
     public Integer getMin() {
-        if(this.min != null){return this.min;}
-        else{return 0;}
+        return this.min;
     }
 
     /**
@@ -161,8 +148,6 @@ public class SDate{
      */
     public void setMin(Integer min) {
         this.min = min;
-        if(this.hour==null){this.hour = 0;}
-        if(this.sec==null){this.sec = 0;}
     }
 
     /**
@@ -171,8 +156,7 @@ public class SDate{
      * @author Sébastien HERT
      */
     public Integer getSec() {
-        if(this.sec != null){return this.sec;}
-        else{return 0;}
+        return this.sec;
     }
 
     /**
@@ -182,8 +166,6 @@ public class SDate{
      */
     public void setSec(Integer sec) {
         this.sec = sec;
-        if(this.min==null){this.min = 0;}
-        if(this.hour==null){this.hour = 0;}
     }
 
     /**
@@ -193,12 +175,7 @@ public class SDate{
      */
     @Override
     public String toString(){
-        String s;
-        s = this.getYear()+"/"+feelZero(this.getMonth())+"/"+feelZero(this.getDay());
-        if(this.hour != null && this.min != null && this.sec != null){
-            s = s+" - "+feelZero(this.hour)+":"+feelZero(this.min)+":"+feelZero(this.sec);
-        }
-        return s;
+        return this.getYear()+"/"+feelZero(this.getMonth())+"/"+feelZero(this.getDay())+" - "+feelZero(this.hour)+":"+feelZero(this.min)+":"+feelZero(this.sec);
     }
 
     /**
@@ -222,12 +199,12 @@ public class SDate{
      */
     public Boolean equals(SDate date){
 
-        return  this.getYear().equals(date.getYear())
-                && this.getMonth().equals(date.getMonth())
-                && this.getDay().equals(date.getDay())
-                && this.getHour().equals(date.getHour())
-                && this.getMin().equals(date.getMin())
-                && this.getSec().equals(date.getSec());
+        return  this.year.equals(date.getYear())
+                && this.month.equals(date.getMonth())
+                && this.day.equals(date.getDay())
+                && this.hour.equals(date.getHour())
+                && this.min.equals(date.getMin())
+                && this.sec.equals(date.getSec());
 
     }
 
@@ -238,22 +215,22 @@ public class SDate{
      * @author Sébastien HERT
      */
     public Boolean isSup(SDate date){
-        if (this.getYear() > date.getYear()){return true;}
-        else if(this.getYear() < date.getYear()){return false;}
+        if (this.year > date.getYear()){return true;}
+        else if(this.year < date.getYear()){return false;}
         else{
-            if (this.getMonth() > date.getMonth()){return true;}
-            else if(this.getMonth() < date.getMonth()){return false;}
+            if (this.month > date.getMonth()){return true;}
+            else if(this.month < date.getMonth()){return false;}
             else{
-                if (this.getDay() > date.getDay()){return true;}
-                else if(this.getDay() < date.getDay()){return false;}
+                if (this.day > date.getDay()){return true;}
+                else if(this.day < date.getDay()){return false;}
                 else{
-                    if (this.getHour() > date.getHour()){return true;}
-                    else if(this.getHour() < date.getHour()){return false;}
+                    if (this.hour > date.getHour()){return true;}
+                    else if(this.hour < date.getHour()){return false;}
                     else{
-                        if (this.getMin() > date.getMin()){return true;}
-                        else if(this.getMin() < date.getMin()){return false;}
+                        if (this.min > date.getMin()){return true;}
+                        else if(this.min < date.getMin()){return false;}
                         else{
-                            if (this.getSec() > date.getSec()){return true;}
+                            if (this.sec > date.getSec()){return true;}
                             else{return false;}
                         }
                     }
@@ -270,6 +247,82 @@ public class SDate{
      */
     public Boolean isInf(SDate date){
         return !this.equals(date) && !this.isSup(date);
+    }
+
+    /**
+     * Checks if the SDate is valid or not
+     * @return a Boolean
+     * @author Sébastien HERT
+     */
+    public Boolean isValid(){
+        return  this.isValidMonth()
+                && this.isValidDay()
+                && this.isValidHour()
+                && this.isValidMin()
+                && this.isValidSec();
+    }
+
+    /**
+     * Checks if the month is valid
+     * @return a Boolean
+     * @author Sébastien HERT
+     */
+    public Boolean isValidMonth(){
+        return this.month <= 12 && this.month > 0;
+    }
+
+    /**
+     * Checks if the day is valid depeding on the month and the year
+     * @return a Boolean
+     * @author Sébastien HERT
+     */
+    public Boolean isValidDay(){
+        return this.day > 0 && this.day <= this.getDaysPerMonth();
+    }
+
+    /**
+     * Checks if the hour is valid (24-hour clock)
+     * @return a Boolean
+     * @author Sébastien HERT
+     */
+    public Boolean isValidHour(){
+        return this.hour >= 0 && this.hour < 24;
+    }
+
+    /**
+     * Checks if the minutes are valid
+     * @return a Boolean
+     * @author Sébastien HERT
+     */
+    public Boolean isValidMin(){
+        return this.min >=0 && this.min < 60;
+    }
+
+    /**
+     * Checks if the seconds are valid
+     * @return a Boolean
+     * @author Sébastien HERT
+     */
+    public Boolean isValidSec(){
+        return this.sec >=0 && this.sec < 60;
+    }
+
+    /**
+     * Gives the number of days in the month of the SDate
+     * @return the number of days
+     * @author Sébastien HERT
+     */
+    public int getDaysPerMonth(){
+        if (this.month<8){
+            if(this.month%2==1){return 31;}
+            else if (this.month == 2){
+                if (this.year%4 == 0){return 29;}
+                else{return 28;}
+            }else{return 30;}
+        }else{
+            if(this.month%2==0){return 31;}
+            else{return 30;}
+        }
     }
 
     
