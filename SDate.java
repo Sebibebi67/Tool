@@ -27,6 +27,20 @@ public class SDate{
 
     /**
      * Constructor
+     * @param date in SDate
+     * @author Sébastien HERT
+     */
+    public SDate(SDate date){
+        this.year = date.getYear();
+        this.month = date.getMonth();
+        this.day = date.getDay();
+        this.hour = date.getHour();
+        this.min = date.getMin();
+        this.sec = date.getSec();
+    }
+
+    /**
+     * Constructor
      * @param year in Integer
      * @param month in Integer
      * @param day in Integer
@@ -363,6 +377,7 @@ public class SDate{
      * @author Sébastien HERT
      */
     public void addYear(Integer year){
+        year = Math.abs(year.intValue());
         this.year = this.year+year;
     }
 
@@ -372,6 +387,7 @@ public class SDate{
      * @author Sébastien HERT
      */
     public void addMonth(Integer month){
+        month = Math.abs(month.intValue());
         if ((this.month+month)%12 != 0){this.month = ((this.month+month)%12);}
         else{this.month = 12;}
         this.addYear((this.month)/12);
@@ -382,9 +398,10 @@ public class SDate{
      * @param day the number of days to add
      * @author Sébastien HERT
      */
-    public void addDay(Integer d){
+    public void addDay(Integer day){
+        day = Math.abs(day.intValue());
         if ((this.day+day)%this.getDaysPerMonth() != 0){
-            this.day = (this.day+d)%(this.getDaysPerMonth());}
+            this.day = (this.day+day)%(this.getDaysPerMonth());}
         else{this.day = this.getDaysPerMonth();}
 
         this.addMonth((this.day)/this.getDaysPerMonth());
@@ -396,6 +413,7 @@ public class SDate{
      * @author Sébastien HERT
      */
     public void addHour(Integer hour){
+        hour = Math.abs(hour.intValue());
         int q = (this.hour+hour)/24;
         this.hour = (this.hour+hour)%24;
         this.addDay(q);
@@ -407,6 +425,7 @@ public class SDate{
      * @author Sébastien HERT
      */
     public void addMin(Integer min){
+        min = Math.abs(min.intValue());
         int q = (this.min+min)/60;
         this.min = (this.min+min)%60;
         this.addHour(q);
@@ -418,6 +437,7 @@ public class SDate{
      * @author Sébastien HERT
      */
     public void addSec(Integer sec){
+        sec = Math.abs(sec.intValue());
         int q = (this.sec+sec)/60;
         this.sec = (this.sec+sec)%60;
         this.addMin(q);
