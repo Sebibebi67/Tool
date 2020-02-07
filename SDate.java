@@ -325,6 +325,97 @@ public class SDate{
         }
     }
 
+    /**
+     * Adds a time to the SDate
+     * @param year the number of years to add
+     * @param month the number of months to add
+     * @param day the number of days to add
+     * @param hour the number of hours to add
+     * @param min the number of minutes to add
+     * @param sec the number of secondes to add
+     * @author Sébastien HERT
+     */
+    public void addTime(Integer year, Integer month, Integer day, Integer hour, Integer min, Integer sec){
+        this.addSec(sec);
+        this.addMin(min);
+        this.addHour(hour);
+        this.addDay(day);
+        this.addMonth(month);
+        this.addYear(year);
+    }
+
+    /**
+     * Adds a time to the SDate
+     * @param year the number of years to add
+     * @param month the number of months to add
+     * @param day the number of days to add
+     * @author Sébastien HERT
+     */
+    public void addTime(Integer year, Integer month, Integer day){
+        this.addDay(day);
+        this.addMonth(month);
+        this.addYear(year);
+    }
+
+    /**
+     * Adds a number of years to the Sdate
+     * @param year the number of years to add
+     * @author Sébastien HERT
+     */
+    public void addYear(Integer year){
+        this.year = this.year+year;
+    }
+
+    /**
+     * Adds the number of months to the Sdate
+     * @param month the number of months to add
+     * @author Sébastien HERT
+     */
+    public void addMonth(Integer month){
+        this.month = (this.month+month)%12;
+        this.addYear((this.month+month)/12);
+    }
+
+    /**
+     * Adds the number of days to the Sdate
+     * @param day the number of days to add
+     * @author Sébastien HERT
+     */
+    public void addDay(Integer day){
+        this.day = (this.day+day)%this.getDaysPerMonth();
+        this.addMonth((this.day+day)/this.getDaysPerMonth());
+    }
+
+    /**
+     * Adds the number of hours to the Sdate
+     * @param hour the number of hours to add
+     * @author Sébastien HERT
+     */
+    public void addHour(Integer hour){
+        this.hour = (this.hour+hour)%24;
+        this.addDay((this.hour+hour)/24);
+    }
+
+    /**
+     * Adds the number of minutes to the Sdate
+     * @param min the number of minutes to add
+     * @author Sébastien HERT
+     */
+    public void addMin(Integer min){
+        this.min = (this.min+min)%60;
+        this.addHour((this.min+min)/60);
+    }
+
+    /**
+     * Adds the number of seconds to the Sdate
+     * @param sec the numbere of secondes to add
+     * @author Sébastien HERT
+     */
+    public void addSec(Integer sec){
+        this.sec = (this.sec+sec)%60;
+        this.addMin((this.sec+sec)/60);
+    }
+
     
     
 }
