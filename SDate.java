@@ -372,8 +372,9 @@ public class SDate{
      * @author Sébastien HERT
      */
     public void addMonth(Integer month){
-        this.month = (this.month+month)%12;
-        this.addYear((this.month+month)/12);
+        if ((this.month+month)%12 != 0){this.month = ((this.month+month)%12);}
+        else{this.month = 12;}
+        this.addYear((this.month)/12);
     }
 
     /**
@@ -381,9 +382,12 @@ public class SDate{
      * @param day the number of days to add
      * @author Sébastien HERT
      */
-    public void addDay(Integer day){
-        this.day = (this.day+day)%this.getDaysPerMonth();
-        this.addMonth((this.day+day)/this.getDaysPerMonth());
+    public void addDay(Integer d){
+        if ((this.day+day)%this.getDaysPerMonth() != 0){
+            this.day = (this.day+d)%(this.getDaysPerMonth());}
+        else{this.day = this.getDaysPerMonth();}
+
+        this.addMonth((this.day)/this.getDaysPerMonth());
     }
 
     /**
@@ -392,8 +396,9 @@ public class SDate{
      * @author Sébastien HERT
      */
     public void addHour(Integer hour){
+        int q = (this.hour+hour)/24;
         this.hour = (this.hour+hour)%24;
-        this.addDay((this.hour+hour)/24);
+        this.addDay(q);
     }
 
     /**
@@ -402,8 +407,9 @@ public class SDate{
      * @author Sébastien HERT
      */
     public void addMin(Integer min){
+        int q = (this.min+min)/60;
         this.min = (this.min+min)%60;
-        this.addHour((this.min+min)/60);
+        this.addHour(q);
     }
 
     /**
@@ -412,8 +418,9 @@ public class SDate{
      * @author Sébastien HERT
      */
     public void addSec(Integer sec){
+        int q = (this.sec+sec)/60;
         this.sec = (this.sec+sec)%60;
-        this.addMin((this.sec+sec)/60);
+        this.addMin(q);
     }
 
     
