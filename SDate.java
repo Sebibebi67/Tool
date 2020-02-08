@@ -207,7 +207,7 @@ public class SDate{
 
     /**
      * Are 2 SDates equals
-     * @param date the sDate to compare with
+     * @param date the SDate to compare with
      * @return a Boolean
      * @author Sébastien HERT
      */
@@ -341,12 +341,12 @@ public class SDate{
 
     /**
      * Adds a time to the SDate
-     * @param y the number (positiv) of years to add
-     * @param mo the number (positiv) of months to add
-     * @param d the number (positiv) of days to add
-     * @param h the number (positiv) of hs to add
-     * @param mn the number (positiv) of minutes to add
-     * @param sc the number (positiv) of secondes to add
+     * @param y the number (positive) of years to add
+     * @param mo the number (positive) of months to add
+     * @param d the number (positive) of days to add
+     * @param h the number (positive) of hs to add
+     * @param mn the number (positive) of minutes to add
+     * @param sc the number (positive) of secondes to add
      * @author Sébastien HERT
      */
     public void addTime(Integer y, Integer mo, Integer d, Integer h, Integer mn, Integer sc){
@@ -360,9 +360,9 @@ public class SDate{
 
     /**
      * Adds a time to the SDate
-     * @param y the number (positiv) of years to add
-     * @param mo the number (positiv) of months to add
-     * @param d the number (positiv) of days to add
+     * @param y the number (positive) of years to add
+     * @param mo the number (positive) of months to add
+     * @param d the number (positive) of days to add
      * @author Sébastien HERT
      */
     public void addTime(Integer y, Integer mo, Integer d){
@@ -372,7 +372,7 @@ public class SDate{
     }
 
     /**
-     * Adds a number (positiv) of years to the Sdate
+     * Adds a number (positive) of years to the SDate
      * @param y the number of years to add
      * @author Sébastien HERT
      */
@@ -382,7 +382,7 @@ public class SDate{
     }
 
     /**
-     * Adds the number (positiv) of months to the Sdate
+     * Adds the number (positive) of months to the SDate
      * @param mo the number of months to add
      * @author Sébastien HERT
      */
@@ -395,7 +395,7 @@ public class SDate{
     }
 
     /**
-     * Adds the number (positiv) of days to the Sdate
+     * Adds the number (positive) of days to the SDate
      * @param d the number of days to add
      * @author Sébastien HERT
      */
@@ -409,7 +409,7 @@ public class SDate{
     }
 
     /**
-     * Adds the number (positiv) of hs to the Sdate
+     * Adds the number (positive) of hs to the SDate
      * @param h the number of hs to add
      * @author Sébastien HERT
      */
@@ -421,7 +421,7 @@ public class SDate{
     }
 
     /**
-     * Adds the number (positiv) of minutes to the Sdate
+     * Adds the number (positive) of minutes to the SDate
      * @param mn the number of minutes to add
      * @author Sébastien HERT
      */
@@ -433,8 +433,8 @@ public class SDate{
     }
 
     /**
-     * Adds the number (positiv) of seconds to the Sdate
-     * @param sc the numbere of secondes to add
+     * Adds the number (positive) of seconds to the SDate
+     * @param sc the number of seconds to add
      * @author Sébastien HERT
      */
     public void addSec(Integer sc){
@@ -444,6 +444,16 @@ public class SDate{
         this.addMin(q);
     }
 
+    /**
+     * Removes a time of the SDate
+     * @param y the number (positive) of years to remove
+     * @param mo the number (positive) of month to remove
+     * @param d the number (positive) of days to remove
+     * @param h the number (positive) of hours to remove
+     * @param mn the number (positive) of minutes to remove
+     * @param sc the number (positive) of secondes to remove
+     * @author Sébastien HERT
+     */
     public void removeTime(Integer y, Integer mo, Integer d, Integer h, Integer mn, Integer sc){
         this.removeSec(sc);
         this.removeMin(mn);
@@ -453,16 +463,33 @@ public class SDate{
         this.removeYear(y);
     }
 
+    /**
+     * Removes a time of the SDate
+     * @param y the number (positive) of years to remove
+     * @param mo the number (positive) of month to remove
+     * @param d the number (positive) of days to remove
+     * @author Sébastien HERT
+     */
     public void removeTime(Integer y, Integer mo, Integer d){
         this.removeDay(d);
         this.removeMonth(mo);
         this.removeYear(y);
     }
 
+    /**
+     * Removes the number (positive) of years to the SDate
+     * @param y the number of years to remove
+     * @author Sébastien HERT
+     */
     public void removeYear(Integer y){
         this.year -= y;
     }
 
+    /**
+     * Removes the number (positiv) of months to the SDate
+     * @param mo the number of months to remove
+     * @author Sébastien HERT
+     */
     public void removeMonth(Integer mo){
         mo = Math.abs(mo.intValue());
         this.month -= mo;
@@ -474,17 +501,25 @@ public class SDate{
         this.removeYear(q);
     }
 
+    /**
+     * Removes the number (positive) of days to the SDate
+     * @param d the number of days to remove
+     * @author Sébastien HERT
+     */
     public void removeDay(Integer d){
         d = Math.abs(d.intValue());
         this.day -= d;
         while (this.day<=0){
             this.removeMonth(1);
             this.day += this.getDaysPerMonth();
-            // System.out.println(this.month);
-            // System.out.println(this.getDaysPerMonth());
         }
     }
 
+    /**
+     * Removes the number (positive) of hours to the SDate
+     * @param h the number of hours to remove
+     * @author Sébastien HERT
+     */
     public void removeHour(Integer h){
         h = Math.abs(h.intValue());
         this.hour -= h;
@@ -496,6 +531,11 @@ public class SDate{
         this.removeDay(q);
     }
 
+    /**
+     * Removes the number (positive) of minutes to the SDate
+     * @param mn the number of minutes to remove
+     * @author Sébastien HERT
+     */
     public void removeMin(Integer mn){
         mn = Math.abs(mn.intValue());
         this.min -= mn;
@@ -507,6 +547,11 @@ public class SDate{
         this.removeHour(q);
     }
 
+    /**
+     * Removes the number (positive) of seconds to the SDate
+     * @param sc the number of seconds to remove
+     * @author Sébastien HERT
+     */
     public void removeSec(Integer sc){
         sc = Math.abs(sc.intValue());
         this.sec -= sc;
