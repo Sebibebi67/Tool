@@ -41,15 +41,15 @@ public class SDate{
 
     /**
      * Constructor
-     * @param year in Integer
-     * @param month in Integer
-     * @param day in Integer
+     * @param y in Integer
+     * @param mo in Integer
+     * @param d in Integer
      * @author Sébastien HERT
      */
-    public SDate(Integer year, Integer month, Integer day){
-        this.year = year;
-        this.month = month;
-        this.day = day;
+    public SDate(Integer y, Integer mo, Integer d){
+        this.year = y;
+        this.month = mo;
+        this.day = d;
         this.hour = 0;
         this.min = 0;
         this.sec = 0;
@@ -57,21 +57,21 @@ public class SDate{
 
     /**
      * Constructor
-     * @param year in Integer
-     * @param month in Integer
-     * @param day in Integer
-     * @param hour in Integer
-     * @param min in Integer
-     * @param sec in Integer
+     * @param y in Integer
+     * @param mo in Integer
+     * @param d in Integer
+     * @param h in Integer
+     * @param mn in Integer
+     * @param sc in Integer
      * @author Sébastien HERT
      */
-    public SDate(Integer year, Integer month, Integer day, Integer hour, Integer min, Integer sec){
-        this.year = year;
-        this.month = month;
-        this.day = day;
-        this.hour = hour;
-        this.min = min;
-        this.sec = sec;
+    public SDate(Integer y, Integer mo, Integer d, Integer h, Integer mn, Integer sc){
+        this.year = y;
+        this.month = mo;
+        this.day = d;
+        this.hour = h;
+        this.min = mn;
+        this.sec = sc;
     }
 
     /**
@@ -85,11 +85,11 @@ public class SDate{
 
     /**
      * Sets the year
-     * @param year in Integer
+     * @param y in Integer
      * @author Sébastien HERT
      */
-    public void setYear(Integer year) {
-        this.year = year;
+    public void setYear(Integer y) {
+        this.year = y;
     }
 
     /**
@@ -103,11 +103,11 @@ public class SDate{
 
     /**
      * Sets the month
-     * @param month in Integer
+     * @param mo in Integer
      * @author Sébastien HERT
      */
-    public void setMonth(Integer month) {
-        this.month = month;
+    public void setMonth(Integer mo) {
+        this.month = mo;
     }
 
     /**
@@ -121,11 +121,11 @@ public class SDate{
 
     /**
      * Sets the day
-     * @param day in Integer
+     * @param d in Integer
      * @author Sébastien HERT
      */
-    public void setDay(Integer day) {
-        this.day = day;
+    public void setDay(Integer d) {
+        this.day = d;
     }
 
     /**
@@ -139,11 +139,11 @@ public class SDate{
 
     /**
      * Sets the hour
-     * @param hour in Integer
+     * @param h in Integer
      * @author Sébastien HERT
      */
-    public void setHour(Integer hour) {
-        this.hour = hour;
+    public void setHour(Integer h) {
+        this.hour = h;
     }
 
     /**
@@ -157,11 +157,11 @@ public class SDate{
 
     /**
      * Sets the minute
-     * @param min in Integer
+     * @param mn in Integer
      * @author Sébastien HERT
      */
-    public void setMin(Integer min) {
-        this.min = min;
+    public void setMin(Integer mn) {
+        this.min = mn;
     }
 
     /**
@@ -175,11 +175,11 @@ public class SDate{
 
     /**
      * Sets the seconde
-     * @param sec in Integer
+     * @param sc in Integer
      * @author Sébastien HERT
      */
-    public void setSec(Integer sec) {
-        this.sec = sec;
+    public void setSec(Integer sc) {
+        this.sec = sc;
     }
 
     /**
@@ -189,7 +189,7 @@ public class SDate{
      */
     @Override
     public String toString(){
-        return this.getYear()+"/"+feelZero(this.getMonth())+"/"+feelZero(this.getDay())+" - "+feelZero(this.hour)+":"+feelZero(this.min)+":"+feelZero(this.sec);
+        return this.year+"/"+feelZero(this.month)+"/"+feelZero(this.day)+" - "+feelZero(this.hour)+":"+feelZero(this.min)+":"+feelZero(this.sec);
     }
 
     /**
@@ -197,7 +197,7 @@ public class SDate{
      * @param i in Integer
      * @return I as a String
      */
-    public String feelZero(Integer i){
+    private String feelZero(Integer i){
         if( i < 10 ){
             return "0"+i;
         }else{
@@ -295,7 +295,7 @@ public class SDate{
     }
 
     /**
-     * Checks if the hour is valid (24-hour clock)
+     * Checks if the hour is valid (24-h clock)
      * @return a Boolean
      * @author Sébastien HERT
      */
@@ -326,7 +326,7 @@ public class SDate{
      * @return the number of days
      * @author Sébastien HERT
      */
-    public int getDaysPerMonth(){
+    private int getDaysPerMonth(){
         if (this.month<8){
             if(this.month%2==1){return 31;}
             else if (this.month == 2){
@@ -341,108 +341,181 @@ public class SDate{
 
     /**
      * Adds a time to the SDate
-     * @param year the number of years to add
-     * @param month the number of months to add
-     * @param day the number of days to add
-     * @param hour the number of hours to add
-     * @param min the number of minutes to add
-     * @param sec the number of secondes to add
+     * @param y the number (positiv) of years to add
+     * @param mo the number (positiv) of months to add
+     * @param d the number (positiv) of days to add
+     * @param h the number (positiv) of hs to add
+     * @param mn the number (positiv) of minutes to add
+     * @param sc the number (positiv) of secondes to add
      * @author Sébastien HERT
      */
-    public void addTime(Integer year, Integer month, Integer day, Integer hour, Integer min, Integer sec){
-        this.addSec(sec);
-        this.addMin(min);
-        this.addHour(hour);
-        this.addDay(day);
-        this.addMonth(month);
-        this.addYear(year);
+    public void addTime(Integer y, Integer mo, Integer d, Integer h, Integer mn, Integer sc){
+        this.addSec(sc);
+        this.addMin(mn);
+        this.addHour(h);
+        this.addDay(d);
+        this.addMonth(mo);
+        this.addYear(y);
     }
 
     /**
      * Adds a time to the SDate
-     * @param year the number of years to add
-     * @param month the number of months to add
-     * @param day the number of days to add
+     * @param y the number (positiv) of years to add
+     * @param mo the number (positiv) of months to add
+     * @param d the number (positiv) of days to add
      * @author Sébastien HERT
      */
-    public void addTime(Integer year, Integer month, Integer day){
-        this.addDay(day);
-        this.addMonth(month);
-        this.addYear(year);
+    public void addTime(Integer y, Integer mo, Integer d){
+        this.addDay(d);
+        this.addMonth(mo);
+        this.addYear(y);
     }
 
     /**
-     * Adds a number of years to the Sdate
-     * @param year the number of years to add
+     * Adds a number (positiv) of years to the Sdate
+     * @param y the number of years to add
      * @author Sébastien HERT
      */
-    public void addYear(Integer year){
-        year = Math.abs(year.intValue());
-        this.year = this.year+year;
+    public void addYear(Integer y){
+        y = Math.abs(y.intValue());
+        this.year += y;
     }
 
     /**
-     * Adds the number of months to the Sdate
-     * @param month the number of months to add
+     * Adds the number (positiv) of months to the Sdate
+     * @param mo the number of months to add
      * @author Sébastien HERT
      */
-    public void addMonth(Integer month){
-        month = Math.abs(month.intValue());
-        if ((this.month+month)%12 != 0){this.month = ((this.month+month)%12);}
+    public void addMonth(Integer mo){
+        mo = Math.abs(mo.intValue());
+        int q = (this.month+mo)/12;
+        if ((this.month+mo)%12 != 0){this.month = ((this.month+mo)%12);}
         else{this.month = 12;}
-        this.addYear((this.month)/12);
+        this.addYear(q);
     }
 
     /**
-     * Adds the number of days to the Sdate
-     * @param day the number of days to add
+     * Adds the number (positiv) of days to the Sdate
+     * @param d the number of days to add
      * @author Sébastien HERT
      */
-    public void addDay(Integer day){
-        day = Math.abs(day.intValue());
-        if ((this.day+day)%this.getDaysPerMonth() != 0){
-            this.day = (this.day+day)%(this.getDaysPerMonth());}
-        else{this.day = this.getDaysPerMonth();}
-
-        this.addMonth((this.day)/this.getDaysPerMonth());
+    public void addDay(Integer d){
+        d = Math.abs(d.intValue());
+        this.day += d;
+        while (this.day>this.getDaysPerMonth()){
+            this.day -= this.getDaysPerMonth();
+            this.addMonth(1);
+        }
     }
 
     /**
-     * Adds the number of hours to the Sdate
-     * @param hour the number of hours to add
+     * Adds the number (positiv) of hs to the Sdate
+     * @param h the number of hs to add
      * @author Sébastien HERT
      */
-    public void addHour(Integer hour){
-        hour = Math.abs(hour.intValue());
-        int q = (this.hour+hour)/24;
-        this.hour = (this.hour+hour)%24;
+    public void addHour(Integer h){
+        h = Math.abs(h.intValue());
+        int q = (this.hour+h)/24;
+        this.hour = (this.hour+h)%24;
         this.addDay(q);
     }
 
     /**
-     * Adds the number of minutes to the Sdate
-     * @param min the number of minutes to add
+     * Adds the number (positiv) of minutes to the Sdate
+     * @param mn the number of minutes to add
      * @author Sébastien HERT
      */
-    public void addMin(Integer min){
-        min = Math.abs(min.intValue());
-        int q = (this.min+min)/60;
-        this.min = (this.min+min)%60;
+    public void addMin(Integer mn){
+        mn = Math.abs(mn.intValue());
+        int q = (this.min+mn)/60;
+        this.min = (this.min+mn)%60;
         this.addHour(q);
     }
 
     /**
-     * Adds the number of seconds to the Sdate
-     * @param sec the numbere of secondes to add
+     * Adds the number (positiv) of seconds to the Sdate
+     * @param sc the numbere of secondes to add
      * @author Sébastien HERT
      */
-    public void addSec(Integer sec){
-        sec = Math.abs(sec.intValue());
-        int q = (this.sec+sec)/60;
-        this.sec = (this.sec+sec)%60;
+    public void addSec(Integer sc){
+        sc = Math.abs(sc.intValue());
+        int q = (this.sec+sc)/60;
+        this.sec = (this.sec+sc)%60;
         this.addMin(q);
     }
 
-    
+    public void removeTime(Integer y, Integer mo, Integer d, Integer h, Integer mn, Integer sc){
+        this.removeSec(sc);
+        this.removeMin(mn);
+        this.removeHour(h);
+        this.removeDay(d);
+        this.removeMonth(mo);
+        this.removeYear(y);
+    }
+
+    public void removeTime(Integer y, Integer mo, Integer d){
+        this.removeDay(d);
+        this.removeMonth(mo);
+        this.removeYear(y);
+    }
+
+    public void removeYear(Integer y){
+        this.year -= y;
+    }
+
+    public void removeMonth(Integer mo){
+        mo = Math.abs(mo.intValue());
+        this.month -= mo;
+        int q = 0;
+        while (this.month<=0){
+            this.month += 12;
+            q = q+1;
+        }
+        this.removeYear(q);
+    }
+
+    public void removeDay(Integer d){
+        d = Math.abs(d.intValue());
+        this.day -= d;
+        while (this.day<=0){
+            this.removeMonth(1);
+            this.day += this.getDaysPerMonth();
+            // System.out.println(this.month);
+            // System.out.println(this.getDaysPerMonth());
+        }
+    }
+
+    public void removeHour(Integer h){
+        h = Math.abs(h.intValue());
+        this.hour -= h;
+        int q = 0;
+        while (this.hour<0){
+            this.hour += 24;
+            q = q+1;
+        }
+        this.removeDay(q);
+    }
+
+    public void removeMin(Integer mn){
+        mn = Math.abs(mn.intValue());
+        this.min -= mn;
+        int q = 0;
+        while (this.min<0){
+            this.min += 60;
+            q = q+1;
+        }
+        this.removeHour(q);
+    }
+
+    public void removeSec(Integer sc){
+        sc = Math.abs(sc.intValue());
+        this.sec -= sc;
+        int q = 0;
+        while (this.sec<0){
+            this.sec += 60;
+            q = q+1;
+        }
+        this.removeMin(q);
+    }    
     
 }
