@@ -12,6 +12,9 @@ public class SDate{
     private Integer min;
     private Integer sec;
 
+    //Put your own time zone delay
+    private static Integer delay = +1;
+
     /**
      * Constructor
      * @author Sébastien HERT
@@ -388,9 +391,12 @@ public class SDate{
      */
     public void addMonth(Integer mo){
         mo = Math.abs(mo.intValue());
-        int q = (this.month+mo)/12;
-        if ((this.month+mo)%12 != 0){this.month = ((this.month+mo)%12);}
-        else{this.month = 12;}
+        this.month += mo;
+        int q = 0;
+        while (this.month>12){
+            this.month -= 12;
+            q = q+1;
+        }
         this.addYear(q);
     }
 
@@ -415,8 +421,12 @@ public class SDate{
      */
     public void addHour(Integer h){
         h = Math.abs(h.intValue());
-        int q = (this.hour+h)/24;
-        this.hour = (this.hour+h)%24;
+        this.hour += h;
+        int q = 0;
+        while (this.hour>=24){
+            this.hour -= 24;
+            q = q+1;
+        }
         this.addDay(q);
     }
 
@@ -427,8 +437,12 @@ public class SDate{
      */
     public void addMin(Integer mn){
         mn = Math.abs(mn.intValue());
-        int q = (this.min+mn)/60;
-        this.min = (this.min+mn)%60;
+        this.min += mn;
+        int q = 0;
+        while (this.min>=60){
+            this.min -= 60;
+            q = q+1;
+        }
         this.addHour(q);
     }
 
@@ -439,8 +453,12 @@ public class SDate{
      */
     public void addSec(Integer sc){
         sc = Math.abs(sc.intValue());
-        int q = (this.sec+sc)/60;
-        this.sec = (this.sec+sc)%60;
+        this.sec += sc;
+        int q = 0;
+        while (this.sec>=60){
+            this.sec -= 60;
+            q = q+1;
+        }
         this.addMin(q);
     }
 
@@ -561,6 +579,28 @@ public class SDate{
             q = q+1;
         }
         this.removeMin(q);
-    }    
+    }
+    
+    /**
+     * Creates a SDate with the current time
+     * @return the current date
+     * @see #delay the class variable delay
+     */
+    public static SDate now(){
+        SDate date = new SDate(1970, 1, 1);
+        long l = System.currentTimeMillis();
+        l /= 1000;
+        while (l>Integer.MAX_VALUE/2){
+            date.addSec(Integer.MAX_VALUE/2);
+            l -= Integer.MAX_VALUE/2;
+        }
+        date.addSec((int) l);
+
+        //Add your TimeZone delay
+        if (delay>0){date.addHour(delay);}
+        else { date.removeHour(delay);}
+
+        return date;
+    }
     
 }
