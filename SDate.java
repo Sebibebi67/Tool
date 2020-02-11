@@ -77,6 +77,27 @@ public class SDate{
         this.sec = sc;
     }
 
+
+    /**
+     * Constructor
+     * @param s the String with the appropriate format
+     * @see #Date.toString()
+     * @author Sébastien HERT
+     */
+    public SDate(String s){
+
+        String[] sParse = s.split(" - ");
+        String[] sParseDate = sParse[0].split("/");
+        String[] sParseTime = sParse[1].split(":");
+
+        this.year = Integer.parseInt(sParseDate[0]);
+        this.month = Integer.parseInt(sParseDate[1]);
+        this.day = Integer.parseInt(sParseDate[2]);
+        this.hour = Integer.parseInt(sParseTime[0]);
+        this.min = Integer.parseInt(sParseTime[1]);
+        this.sec = Integer.parseInt(sParseTime[2]);
+    }
+
     /**
      * Gets the year
      * @return year in Integer
