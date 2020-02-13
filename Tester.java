@@ -3,10 +3,11 @@ public class Tester{
 
 
     public static void main(String[] args) {
-        SDate date2 = SDate.now();
-        System.out.println(date2);
-        SDate date1 = new SDate(date2.toString());
-        System.out.println(date1);
+        String s = "This is what i want to crypt";
+        String encoded = Hasher.hashing(s);
+        System.out.println(s);
+        System.out.println(encoded);
+        System.out.println(Hasher.isValidePwd(s, encoded));
         
     }
 }
